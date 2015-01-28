@@ -49,13 +49,18 @@ def proccessSectionTree(output_file, line):
     target[index_dict[depth]] = OrderedDict()
 
 
-def pandocGenerate(title_path):
-    print "pandoc -s --template " + os.path.dirname(os.path.abspath(sys.argv[0])) + "/default.docbook -f markdown -t docbook " + title_path + ".md -o " + output_dir_zh + "/" + title_path + ".xml"
+def pandocGenerate(title_path, depth):
+    command = "pandoc -s -f markdown -t docbook " + title_path.encode('utf-8') + ".md -o " + output_dir_zh.encode('utf-8') + "/" + title_path.encode('utf-8') + ".xml --template " + os.path.dirname(os.path.abspath(sys.argv[0]))
+    if depth == 1:
+        command += "/chapter.docbook"
+    else:
+        command += "/default.docbook"
+    print command
     if not os.path.exists(title_path.encode('utf-8') + ".md"):
         if not os.path.exists(os.path.dirname(title_path.encode('utf-8'))):
             os.mkdir(os.path.dirname(title_path.encode('utf-8')))
         open(title_path.encode('utf-8') + ".md", 'w').close()
-    os.system("pandoc -s --template " + os.path.dirname(os.path.abspath(sys.argv[0])) + "/default.docbook -f markdown -t docbook " + title_path.encode('utf-8') + ".md -o " + output_dir_zh.encode('utf-8') + "/" + title_path.encode('utf-8') + ".xml")
+    os.system(command)
 
 
 def proccessDockbook(tree, depth, p_title, p_title_path, output_file):
@@ -68,8 +73,9 @@ def proccessDockbook(tree, depth, p_title, p_title_path, output_file):
             output_file.write("]>\n")
             output_file.write("<chapter id=\"" + p_title_path.replace('/', '_') + "\">\n")
             output_file.write("  <title>" + p_title + "</title>\n")
-        if depth > 0:
-            output_file.write("<section>")
+        if depth > 1:
+            output_file.write("<section>\n")
+            output_file.write("<title>" + p_title + "</title>\n")
         for key in tree:
             title, title_path = key.split('|')
             title_path_index = title_path
@@ -78,13 +84,15 @@ def proccessDockbook(tree, depth, p_title, p_title_path, output_file):
             output_file.write("  <xi:include href=\"" + title_path_index + ".xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
             if not os.path.exists(os.path.dirname(output_dir_zh + '/' + title_path)):
                 os.mkdir(os.path.dirname(output_dir_zh + '/' + title_path))
-            proccessDockbook(tree[key], depth + 1, title, title_path, codecs.open(output_dir_zh + '/' + title_path + ".xml", 'w', 'utf-8'))
-        if depth > 0:
-            output_file.write("</section>")
+            new_file = codecs.open(output_dir_zh + '/' + title_path + ".xml", 'w', 'utf-8')
+            proccessDockbook(tree[key], depth + 1, title, title_path, new_file)
+            new_file.close()
+        if depth > 1:
+            output_file.write("</section>\n")
         if depth == 1:
             output_file.write("</chapter>\n")
     else:
-        pandocGenerate(p_title_path)
+        pandocGenerate(p_title_path, depth)
 
 
 def proccessSUMMARYmd():

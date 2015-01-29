@@ -1,10 +1,12 @@
+BASEDIR=$(dirname $0)
+
 rm -rf docbook
-python ~/projects/ey/gb2db/im.py ~/projects/ey/gb2db/FileTranslations . docbook/
+python $BASEDIR/im.py $BASEDIR/FileTranslations . docbook/
 
 echo '=================================================='
 
 cd docbook
-python ~/projects/ey/gb2db/con.py ./SUMMARY.md docbook
+python $BASEDIR/con.py ./SUMMARY.md docbook
 cd docbook
 find . -type f -print0 | xargs -0 sed -i 's/sect1/section/g'
 find . -type f -print0 | xargs -0 sed -i 's/sect2/section/g'

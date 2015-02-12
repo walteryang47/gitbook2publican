@@ -39,7 +39,7 @@ def proccessSectionTree(output_file, line):
     title = line[line.index("[") + 1:line.rindex("]")]
     title_path = line[line.rindex("(") + 1:line.rindex(")")]
     title_path = title_path[:-len(".md")]
-    depth = (len(line) - len(line.lstrip()))/4
+    depth = (len(line) - len(line.lstrip()) + 1)/4
     index_dict[depth] = title + '|' + title_path
     target = tree
     search_depth = 0;

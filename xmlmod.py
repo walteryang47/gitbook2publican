@@ -1,7 +1,5 @@
 # -*- coding: UTF-8 -*-
 import xml.etree.ElementTree as xmlParser
-from lxml import etree
-from StringIO import StringIO
 import os
 import sys
 
@@ -33,6 +31,7 @@ def writexml(xml_doc):
 
 
 for elementr in root_element.iter('section'):
+  previous = None
   for element in elementr:
     if element.tag == 'blockquote':
       for child in element:
@@ -53,4 +52,11 @@ for elementr in root_element.iter('section'):
               element.remove(child)
               element.tag = 'warning'
               writexml(xml_doc)
-
+    elif element.tag == 'table':
+      if previous is not None and previous.tag == 'para':
+        for ele in previous.iter('emphasis'):
+          insertele = xmlParser.Element('title')
+          insertele.text = ele.text
+          element.insert(0, insertele)
+          writexml(xml_doc)
+    previous = element

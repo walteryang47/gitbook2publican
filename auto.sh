@@ -15,6 +15,7 @@ find . -type f -print0 | xargs -0 sed -i 's/<ul\/>//g'
 find . -type f -print0 | xargs -0 sed -i 's/<li>//g'
 find . -type f -print0 | xargs -0 sed -i 's/<\/li>//g'
 find . -type f -print0 | xargs -0 sed -i 's/<li\/>//g'
+find . -type f -print0 | xargs -0 sed -i 's/..\/images\//images\//'
 python $BASEDIR/con.py ./SUMMARY.md docbook
 cd docbook
 find . -type f -print0 | xargs -0 sed -i 's/sect1/section/g'

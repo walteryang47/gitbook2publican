@@ -58,5 +58,6 @@ for elementr in root_element.iter('section'):
           insertele = xmlParser.Element('title')
           insertele.text = ele.text
           element.insert(0, insertele)
+          elementr.remove(previous)
           writexml(xml_doc)
     previous = element

@@ -111,6 +111,7 @@ spm|spm
 优化选项解释|optimization_options_explained
 在数据中心中启用和更改配额模式|enabling_and_editing_quota_modes_in_dc
 编辑虚拟机池|editing_vm_pools
+编辑一个虚拟机池|editing_a_vm_pool
 设置一个配置项的值|setting_a_config_value
 使用_EayunOS_域管理工具|using_manager_manage_domains_tool
 导出虚拟机到导出存储域|exporting_vm_to_export_domain
@@ -157,6 +158,7 @@ SummaryOfHostUsageResources|SummaryOfHostUsageResources
 记录统计历史|recording_history
 防火墙|firewall
 理解EayunOS存储域|understanding_manager_storage_domains
+理解 EayunOS 存储域|the_understanding_manager_storage_domains
 导入主机到集群|importing_vm_to_cluster
 VirtualMachinesInventory|VirtualMachinesInventory
 用户简介|user_introduction
@@ -309,6 +311,7 @@ EayunOS_虚拟化宿主机日志文件|hypervisor_log_file
 EayunOS_API_支持声明|manager_api_support
 搜索|search
 EayunOS存储域|manager_storage_domain
+EayunOS 存储域|the_manager_storage_domain
 封装_Windows_XP_模板|encapsulate_windows_xp_template
 RHEL_CentOS_主机|rhel_centos_host
 集群的任务|cluster_tasks
@@ -419,6 +422,7 @@ Top10DowntimeHosts|Top10DowntimeHosts
 KVM虚拟机的时间同步|kvm_vm_time_sync
 EayunOS_用户界面插件的引导|manager_ui_plugin_bootstrap
 导入存在的_ISO_域或导出域|import_existing_iso_domain_or_export_domain
+导入存在的 ISO 域或导出域|the_import_existing_iso_domain_or_export_domain
 封装_Windows_7_或_Windows_2008_模板|encapsulate_windows_7_or_windows_2008_template
 运行虚拟机|run-vm
 删除一个外部供应商|delete_a_external_provider
@@ -483,6 +487,7 @@ SPM_优先级设置的解释|spm_priority_settings_explained
 虚拟机管理员角色解释|vm_admin_role_explained
 新建逻辑网络中vNIC配置集选项卡设置的解释|new_logical_network_vnic_profile_tab_settings_explained
 上传_ISO_到_ISO_域|upload_iso_to_iso_domain
+上传 ISO 到 ISO 域|the_upload_iso_to_iso_domain
 EayunOS_日志收集工具|manager_log_collector_tool
 用户属性|user_properties
 用户角色和用户权限实例|user_role_and_permissions_example
@@ -546,6 +551,7 @@ HighAvailabilityVirtualServersUptime|HighAvailabilityVirtualServersUptime
 配置CentOS5.4或更高版本的客户机操作系统使用SPICE|configure_systems_of_centos_5_dot_4_or_higher_to_use_spice
 使用逻辑网络将多个VLAN添加到一块单独的网络接口上|using_logical_network_to_attach_multiple_vlan_to_one_nic
 在EayunOS虚拟化中的存储域元数据|manager_storage_metadata
+在 EayunOS 虚拟化中的存储域元数据|the_manager_storage_metadata
 创建一台虚拟机|create_a_vm
 StorageDomains|StorageDomains
 附加已存在的_ISO_存储域到数据中心|attach_existing_iso_domain_to_dc
@@ -568,6 +574,7 @@ VDSM_Hook|vdsm_hook
 导航到报表|navigate_to_reports
 搜索磁盘|search_disks
 EayunOS存储域的权限管理|manager_storage_domain_permission_management
+EayunOS 存储域的权限管理|the_manager_storage_domain_permission_management
 删除书签|delete_bookmark
 EayunOS企业级虚拟化历史数据库|manager_history_database
 主机|host
@@ -651,3 +658,36 @@ EayunOS企业级虚拟化中的JasperReports和JasperServer|manager_jasper_serve
 在管理门户内取消主机_USB_穿透|detaching_host_usb_in_portal
 为池分配管理员或者用户角色|assign_admin_or_user_role_to_vm_pool
 为池删除管理员或者用户角色|delete_admin_or_user_role_from_vm_pool
+服务质量|service_level
+存储服务质量|service_level_storage
+创建一个存储服务质量|create_storage_service_level
+创建一个存储服务质量实体|create_storage_service_level_entity
+删除一个存储服务质量|delete_storage_service_level
+删除一个存储服务质量实体|delete_storage_service_level_entity
+网络服务质量|network_service_level
+创建一个网络服务质量|create_network_service_level
+创建一个网络服务质量实体|create_network_service_level_entity
+删除一个网络服务质量|delete_network_service_level
+删除一个网络服务质量实体|delete_network_service_level_entity
+CPU 服务质量|cpu_service_level
+CPU_服务质量|the_cpu_service_level
+创建一个 CPU 服务质量|create_cpu_service_level
+创建一个_CPU_服务质量|the_create_cpu_service_level
+创建一个 CPU 服务质量实体|create_cpu_service_level_entity
+删除一个 CPU 服务质量|delete_cpu_service_level
+删除一个_CPU_服务质量|the_delete_cpu_service_level
+删除一个 CPU 服务质量实体|delete_cpu_service_level_entity
+在新建和编辑网络 Qos 配置窗口里的设置解释|new_edit_network_qos_settings_explained
+新建网络_QoS_和编辑网络_QoS_窗口中的设置|new_and_edit_network_qos_settings_explained
+准备 NFS 存储|preparing_nfs_storage
+准备 pNFS 存储|preparing_pnfs_storage
+添加 NFS 存储|adding_nfs_storage
+添加 pNFS 存储|adding_pnfs_storage
+添加 Glusterfs 的存储域|adding_glusterfs_storage
+兼容 POSIX 的存储域|POSIX_compatible_storage
+添加兼容 POSIX 的存储域|adding_POSIX_compatible_storage
+准备 iSCSI 存储|preparing_iscsi_storage
+添加 FCP 存储|adding_fcp_storage
+准备 FCP 存储|preparing_fcp_storage
+在 EayunOS 虚拟化中不可用的 LUNS|manager_unavailable_luns
+添加 iSCSI 存储|adding_iscsi_storage

@@ -63,7 +63,7 @@ engine-image-uploader使用示例|engine-image-uploader_examples
 CloudProviderVirtualMachineInventory|CloudProviderVirtualMachineInventory
 管理网络窗口设置解释|manage_networks_configurations_explained
 系统权限|system_permissions
-趋势报表|inventory_reports
+趋势报表|trends_reports
 虚拟磁盘任务|virtual_disk_tasks
 使用主机电源管理功能|using_host_power_management
 关闭虚拟机|shut_down_vm

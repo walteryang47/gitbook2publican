@@ -679,6 +679,7 @@ CPU_服务质量|the_cpu_service_level
 删除一个 CPU 服务质量实体|delete_cpu_service_level_entity
 在新建和编辑网络 Qos 配置窗口里的设置解释|new_edit_network_qos_settings_explained
 新建网络_QoS_和编辑网络_QoS_窗口中的设置|new_and_edit_network_qos_settings_explained
+新建网络 QoS 和编辑网络 QoS 窗口中的设置|the_new_and_edit_network_qos_settings_explained
 准备 NFS 存储|preparing_nfs_storage
 准备 pNFS 存储|preparing_pnfs_storage
 添加 NFS 存储|adding_nfs_storage
@@ -691,3 +692,7 @@ CPU_服务质量|the_cpu_service_level
 准备 FCP 存储|preparing_fcp_storage
 在 EayunOS 虚拟化中不可用的 LUNS|manager_unavailable_luns
 添加 iSCSI 存储|adding_iscsi_storage
+Optimizer|optimizer
+使用 Optimizer Result|using_optimizer_result
+使用限制|use_limit
+禁用自动负载均衡|disable_auto_load_balancing

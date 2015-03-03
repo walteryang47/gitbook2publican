@@ -103,7 +103,7 @@ spm|spm
 搜索结果类型选项|options_in_search_result_types
 导入模板|imoprt_template
 使用_VDSM_Hooking_模块|using_vdsm_hooking_module
-创建虚拟机|creatiing_vm
+创建虚拟机|creating_vm
 删除目录服务|deleting_directory_service
 创建一个虚拟网卡配置集|creating_vnic_profile
 新增虚拟机到池|adding_vm_to_vm_pool
@@ -406,7 +406,7 @@ EayunOS_虚拟机镜像上传工具的命令行说明|manager_vm_image-uploader_
 安装一个看门狗设备|install_a_watchdog_device
 添加_Glusterfs_的存储域|adding_glusterfs_storage_domain
 SingleVirtualMachineResourcesOverTime|SingleVirtualMachineResourcesOverTime
-虚拟机常规设置解释|vm_feneral_settings_explained
+虚拟机常规设置解释|vm_general_settings_explained
 VDSM|vdsm
 集群和权限|cluster_and_role
 新建集群和编辑集群窗口中设置和控制的解释|explanation_of_settings_and_controls_in_the_new_cluster_and_edit_cluster_windows

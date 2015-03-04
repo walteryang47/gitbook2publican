@@ -696,3 +696,13 @@ Optimizer|optimizer
 使用 Optimizer Result|using_optimizer_result
 使用限制|use_limit
 禁用自动负载均衡|disable_auto_load_balancing
+CPU 配置集|cpu_profile
+创建一个 CPU 配置集|create_cpu_profile
+删除一个 CPU 配置集|delete_cpu_profile
+vNIC 配置集概览|vnic_profile_ovierview
+创建或编辑一个 vNIC 配置集|create_edit_vnic_profile
+vNIC 配置集窗口中的设置解释|vnic_window_settings_explained
+创建一个 vNIC 配置集|create_vnic_profile
+删除一个 vNIC 配置集|delete_vnic_profile
+将安全组分配给 vNIC 配置集|assign_security_group_to_vnic_profile
+vNIC 配置集的用户权限|vnic_profile_user_permission

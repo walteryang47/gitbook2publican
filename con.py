@@ -24,6 +24,9 @@ def output_prefix(output_file):
     output_file.write("%BOOK_ENTITIES;\n")
     output_file.write("]>\n")
     output_file.write("<book>\n")
+    output_file.write("  <xi:include href=\"Book_Info.xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
+    output_file.write("  <xi:include href=\"Preface.xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
+    output_file.write("  <xi:include href=\"Chapter-using-guide.xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
 
 
 def output_suffix(output_file):
@@ -190,7 +193,7 @@ def proccessMiscPublicanFiles():
                 <author>
                     <firstname>firstname</firstname>
                     <surname>surname</surname>
-                    <email>walteryang47@gmail.com</email>
+                    <email>user@mail.com</email>
                 </author>
                 <revdescription>
                     <simplelist>
@@ -209,12 +212,90 @@ def proccessMiscPublicanFiles():
 # Config::Simple 4.59
 # Wed Feb 12 18:43:21 2014
 
-brand: brand_name
+brand: eayun
 type: Book
 xml_lang: "zh-CN"
 """)
     publican.close()
 
+    publican = open(output_dir_zh + '/Preface.xml', 'w')
+    publican.write("""\
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
+%BOOK_ENTITIES;
+]>
+<preface id="pref-Documents-administrator-guide-Preface">
+    <title>Preface</title>
+    <xi:include href="Common_Content/Conventions.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+    <xi:include href="Feedback.xml" xmlns:xi="http://www.w3.org/2001/XInclude"><xi:fallback xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="Common_Content/Feedback.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+    </xi:fallback>
+    </xi:include>
+</preface>
+""")
+    publican.close()
+
+    publican = open(output_dir_zh + '/Chapter-using-guide.xml', 'w')
+    publican.write("""\
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-Documents-administrator-guide-Chapter-using-guide">
+    <title>手册使用向导</title>
+    <para>
+        This is a test paragraph
+    </para>
+    <section id="sect-Documents-administrator-guide-Chapter-using-guide-Section_1">
+        <title>阅读管理员手册前的准备</title>
+        <para>
+            This is a test paragraph in a section
+        </para>
+    </section>
+
+    <section id="sect-Documents-administrator-guide-Chapter-using-guide-Section_2">
+        <title>本手册的层次结构</title>
+        <para>
+            This is a test paragraph in Section 2
+            <orderedlist>
+                <listitem>
+                    <para>
+                        This is a test listitem.
+                    </para>
+                </listitem>
+            </orderedlist>
+        </para>
+    </section>
+
+    <section id="sect-Documents-administrator-guide-Chapter-using-guide-Section_3">
+        <title>流程实例</title>
+        <para>
+        </para>
+           <section id="sect-Documents-administrator-guide-Chapter-using-guide-Section_3-1">
+                <title>概览</title>
+                <para>
+                </para>
+           </section>
+           <section id="sect-Documents-administrator-guide-Chapter-using-guide-Section_3-2">
+                <title>流程示例之创建iscsi数据中心</title>
+                <para>
+                </para>
+           </section>
+           <section id="sect-Documents-administrator-guide-Chapter-using-guide-Section_3-3">
+                <title>流程示例之负载</title>
+                <para>
+                </para>
+           </section>
+           <section id="sect-Documents-administrator-guide-Chapter-using-guide-Section_3-4">
+                <title>流程示例之供用户组使用的模板</title>
+                <para>
+                </para>
+           </section>
+    </section>
+</chapter>
+""")
+    publican.close()
 
 proccessSUMMARYmd()
 proccessMiscPublicanFiles()

@@ -19,14 +19,16 @@ output_file = codecs.open(output_dir_zh + '/administrator-guide.xml', 'w', 'utf-
 
 def output_prefix(output_file):
     output_file.write("<?xml version='1.0' encoding='utf-8' ?>\n")
-    output_file.write("<!DOCTYPE book PUBLIC \"-//OASIS//DTD DocBook XML V4.5//EN\" \"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd\" [\n")
-    output_file.write("<!ENTITY % BOOK_ENTITIES SYSTEM \"administrator-guide.ent\">\n")
-    output_file.write("%BOOK_ENTITIES;\n")
+    output_file.write("<!DOCTYPE section [\n")
+    output_file.write("<!ENTITY % openstack SYSTEM \"administrator-guide.ent\">\n")
+    output_file.write("%openstack;\n")
     output_file.write("]>\n")
-    output_file.write("<book>\n")
-    output_file.write("  <xi:include href=\"Book_Info.xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
-    output_file.write("  <xi:include href=\"Preface.xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
-    output_file.write("  <xi:include href=\"Chapter-using-guide.xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
+    output_file.write("<book xmlns=\"http://docbook.org/ns/docbook\"\n")
+    output_file.write("  xmlns:xi=\"http://www.w3.org/2001/XInclude\"\n")
+    output_file.write("  xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n")
+    output_file.write("  version=\"5.0\"\n")
+    output_file.write("  xml:id=\"openstack-arch-design\">\n")
+    output_file.write("  <title>oVirt administrator guide</title>\n")
 
 
 def output_suffix(output_file):
@@ -70,21 +72,28 @@ def proccessDockbook(tree, depth, p_title, p_title_path, output_file):
     if tree:
         if depth == 1:
             output_file.write("<?xml version='1.0' encoding='utf-8' ?>\n")
-            output_file.write("<!DOCTYPE book PUBLIC \"-//OASIS//DTD DocBook XML V4.5//EN\" \"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd\" [\n")
-            output_file.write("<!ENTITY % BOOK_ENTITIES SYSTEM \"administrator-guide.ent\">\n")
-            output_file.write("%BOOK_ENTITIES;\n")
+            output_file.write("<!DOCTYPE section [\n")
+            output_file.write("<!ENTITY % openstack SYSTEM \"administrator-guide.ent\">\n")
+            output_file.write("%openstack;\n")
             output_file.write("]>\n")
-            output_file.write("<chapter id=\"" + p_title_path.replace('/', '_') + "\">\n")
+            output_file.write("<chapter xmlns=\"http://docbook.org/ns/docbook\"\n")
+            output_file.write("  xmlns:xi=\"http://www.w3.org/2001/XInclude\"\n")
+            output_file.write("  xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n")
+            output_file.write("  version=\"5.0\"\n")
+            output_file.write("  xml:id=\"" + p_title_path.replace('/', '_') + "\">\n")
             output_file.write("  <title>" + p_title + "</title>\n")
         if depth > 1:
-            output_file.write("<section>\n")
+            output_file.write("<section xmlns=\"http://docbook.org/ns/docbook\"\n")
+            output_file.write("  xmlns:xi=\"http://www.w3.org/2001/XInclude\"\n")
+            output_file.write("  xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n")
+            output_file.write("  version=\"5.0\">\n")
             output_file.write("<title>" + p_title + "</title>\n")
         for key in tree:
             title, title_path = key.split('|')
             title_path_index = title_path
             if depth > 0:
                 title_path_index = title_path[title_path.index('/') + 1:]
-            output_file.write("  <xi:include href=\"" + title_path_index + ".xml\" xmlns:xi=\"http://www.w3.org/2001/XInclude\"/>\n")
+            output_file.write("  <xi:include href=\"" + title_path_index + ".xml\"/>\n")
             if not os.path.exists(os.path.dirname(output_dir_zh + '/' + title_path)):
                 os.mkdir(os.path.dirname(output_dir_zh + '/' + title_path))
             new_file = codecs.open(output_dir_zh + '/' + title_path + ".xml", 'w', 'utf-8')
@@ -126,11 +135,14 @@ def proccessMiscPublicanFiles():
     author_group = open(output_dir_zh + '/Author_Group.xml', 'w')
     author_group.write("""\
 <?xml version='1.0' encoding='utf-8' ?>
-<!DOCTYPE authorgroup PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
-%BOOK_ENTITIES;
+<!DOCTYPE section [
+<!ENTITY % openstack SYSTEM "administrator-guide.ent">
+%openstack;
 ]>
-<authorgroup>
+<authorgroup xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0">
     <author>
       <firstname>firstname</firstname>
       <surname>surname</surname>
@@ -147,11 +159,15 @@ def proccessMiscPublicanFiles():
     book_info = open(output_dir_zh + '/Book_Info.xml', 'w')
     book_info.write("""\
 <?xml version='1.0' encoding='utf-8' ?>
-<!DOCTYPE bookinfo PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
-%BOOK_ENTITIES;
+<!DOCTYPE section [
+<!ENTITY % openstack SYSTEM "administrator-guide.ent">
+%openstack;
 ]>
-<bookinfo id="book-Documents-administrator-guide-administrator_guide">
+<bookinfo xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+  xml:id="book-Documents-administrator-guide-administrator_guide">
     <title>administrator-guide</title>
     <subtitle>EayunOS 系统管理员手册</subtitle>
     <productname>EayunOS</productname>
@@ -170,8 +186,8 @@ def proccessMiscPublicanFiles():
             </imageobject>
         </inlinemediaobject>
     </corpauthor>
-    <xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-    <xi:include href="Author_Group.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+    <xi:include href="Common_Content/Legal_Notice.xml"/>
+    <xi:include href="Author_Group.xml"/>
 </bookinfo>
 """)
     book_info.close()
@@ -179,11 +195,15 @@ def proccessMiscPublicanFiles():
     revision_his = open(output_dir_zh + '/Revision_History.xml', 'w')
     revision_his.write("""\
 <?xml version='1.0' encoding='utf-8' ?>
-<!DOCTYPE appendix PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
-%BOOK_ENTITIES;
+<!DOCTYPE section [
+<!ENTITY % openstack SYSTEM "administrator-guide.ent">
+%openstack;
 ]>
-<appendix id="appe-Documents-administrator-guide-Revision_History">
+<appendix xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+  xml:id="appe-Documents-administrator-guide-Revision_History">
     <title>修订历史</title>
     <simpara>
         <revhistory>
@@ -209,7 +229,7 @@ def proccessMiscPublicanFiles():
 
     publican = open(output_dir + '/publican.cfg', 'w')
     publican.write("""\
-# Config::Simple 4.59
+# Config::Simple 5.09
 # Wed Feb 12 18:43:21 2014
 
 brand: eayun
@@ -221,14 +241,20 @@ xml_lang: "zh-CN"
     publican = open(output_dir_zh + '/Preface.xml', 'w')
     publican.write("""\
 <?xml version='1.0' encoding='utf-8' ?>
-<!DOCTYPE preface PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
-%BOOK_ENTITIES;
+<!DOCTYPE section [
+<!ENTITY % openstack SYSTEM "administrator-guide.ent">
+%openstack;
 ]>
-<preface id="pref-Documents-administrator-guide-Preface">
+<preface xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+  xml:id="pref-Documents-administrator-guide-Preface">
     <title>Preface</title>
-    <xi:include href="Common_Content/Conventions.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-    <xi:include href="Feedback.xml" xmlns:xi="http://www.w3.org/2001/XInclude"><xi:fallback xmlns:xi="http://www.w3.org/2001/XInclude"><xi:include href="Common_Content/Feedback.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+    <xi:include href="Common_Content/Conventions.xml"/>
+    <xi:include href="Feedback.xml">
+    <xi:fallback>
+    <xi:include href="Common_Content/Feedback.xml"/>
     </xi:fallback>
     </xi:include>
 </preface>
@@ -238,11 +264,15 @@ xml_lang: "zh-CN"
     publican = open(output_dir_zh + '/Chapter-using-guide.xml', 'w')
     publican.write("""\
 <?xml version='1.0' encoding='utf-8' ?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
-%BOOK_ENTITIES;
+<!DOCTYPE section [
+<!ENTITY % openstack SYSTEM "administrator-guide.ent">
+%openstack;
 ]>
-<chapter id="chap-Documents-administrator-guide-Chapter-using-guide">
+<chapter xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="5.0"
+  xml:id="chap-Documents-administrator-guide-Chapter-using-guide">
     <title>手册使用向导</title>
     <para>
         This is a test paragraph

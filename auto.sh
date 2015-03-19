@@ -23,7 +23,6 @@ find . -type f -print0 | xargs -0 sed -i 's/<ul\/>/splashyou/g'
 find . -type f -print0 | xargs -0 sed -i 's/<li>/elouai/g'
 find . -type f -print0 | xargs -0 sed -i 's/<\/li>/splashlee/g'
 find . -type f -print0 | xargs -0 sed -i 's/<li\/>/splashlee/g'
-find . -type f -print0 | xargs -0 sed -i 's/..\/images\//images\//'
 find . -type f -print0 | xargs -0 sed -i '1N;$!N;s/\(!\[.*\](.*)\)[\n[ ]*]*\n[ ]*\*\*.*\*\*/\1/;P;D'
 python $BASEDIR/con.py ./SUMMARY.md docbook
 cd docbook
@@ -33,7 +32,7 @@ find . -type f -print0 | xargs -0 sed -i 's/informaltable/table/g'
 find . -type f -print0 | xargs -0 sed -i '1N;$!N;s/<para>\n[ ]*<emphasis role="strong">介绍<\/emphasis>\n[ ]*<\/para>/<formalpara><title>介绍<\/title><para><\/para><\/formalpara>/;P;D'
 find . -type f -print0 | xargs -0 sed -i '1N;$!N;s/<para>\n[ ]*<emphasis role="strong">概述<\/emphasis>\n[ ]*<\/para>/<formalpara><title>概述<\/title><para><\/para><\/formalpara>/;P;D'
 find . -type f -print0 | xargs -0 sed -i '1N;$!N;s/<para>\n[ ]*<emphasis role="strong">结果<\/emphasis>\n[ ]*<\/para>/<formalpara><title>结果<\/title><para><\/para><\/formalpara>/;P;D'
-find . -type f -execdir python $BASEDIR/xmlmod.py {} \;
+find ./zh-CN -type f -execdir python $BASEDIR/xmlmod.py {} \;
 find . -type f -print0 | xargs -0 sed -i 's/\(<imagedata fileref="\)\(.*png" \)\(\/>\)/\1\2format="PNG" scale="100" \3/'
 find . -type f -print0 | xargs -0 sed -i 's/fanhang/<\/para><para>/g'
 find . -type f -print0 | xargs -0 sed -i 's/<entry>/<entry><para>/g'
@@ -42,7 +41,12 @@ find . -type f -print0 | xargs -0 sed -i 's/youer/<itemizedlist>/g'
 find . -type f -print0 | xargs -0 sed -i 's/splashyou/<\/itemizedlist>/g'
 find . -type f -print0 | xargs -0 sed -i 's/elouai/<listitem><para>/g'
 find . -type f -print0 | xargs -0 sed -i 's/splashlee/<\/para><\/listitem>/g'
+find . -type f -print0 | xargs -0 sed -i 's/administrator-guide.ent/..\/administrator-guide.ent/g'
+sed -i 's/..\/administrator-guide.ent/administrator-guide.ent/g' zh-CN/administrator-guide.xml
+find . -type f -print0 | xargs -0 sed -i 's/<section id="/<section xmlns="http:\/\/docbook.org\/ns\/docbook" xml:id="/g'
 
 cp -r ../../images/ ./zh-CN
 
-publican build --formats=pdf --langs=zh-CN --brand_dir=/usr/share/publican/Common_Content/eayun
+cd zh-CN
+cp $BASEDIR/pom.xml ./
+mvn clean generate-sources -e

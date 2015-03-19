@@ -5,10 +5,10 @@ import sys
 
 xmlfile_path = os.path.abspath(sys.argv[1])
 
+print xmlfile_path
 xml_doc = xmlParser.parse(xmlfile_path)
 root_element = xml_doc.getroot()
 
-print xmlfile_path
 
 
 def writexml(xml_doc):
@@ -19,9 +19,9 @@ def writexml(xml_doc):
     contents = f.readlines()
   with open(xmlfile_path, 'w') as f:
     contents.insert(1, """\
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-<!ENTITY % BOOK_ENTITIES SYSTEM "administrator-guide.ent">
-%BOOK_ENTITIES;
+<!DOCTYPE section [
+<!ENTITY % openstack SYSTEM "administrator-guide.ent">
+%openstack;
 ]>
 
 """)

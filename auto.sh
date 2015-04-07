@@ -1,16 +1,15 @@
 BASEDIR=$(dirname $0)
 
 rm -rf docbook
-python $BASEDIR/im.py $BASEDIR/FileTranslations . docbook/
 
 echo '=================================================='
 
-cd docbook
 find . -type f -print0 | xargs -0 sed -i 's/<br>$/\n/g'
 find . -type f -print0 | xargs -0 sed -i 's/<\/br>$/\n/g'
 find . -type f -print0 | xargs -0 sed -i 's/<br\/>$/\n/g'
 find . -type f -print0 | xargs -0 sed -i 's/<\/li><br\/><li>/<\/li><li>/g'
 find . -type f -print0 | xargs -0 sed -i 's/<\/li><\/br><li>/<\/li><li>/g'
+find . -type f -print0 | xargs -0 sed -i 's/images\//..\/images\//'
 find . -type f -print0 | xargs -0 sed -i 's/<br\/><br\/>/fanhang/g'
 find . -type f -print0 | xargs -0 sed -i 's/<\/br><\/br>/fanhang/g'
 find . -type f -print0 | xargs -0 sed -i 's/<\/br><br\/>/fanhang/g'
@@ -45,7 +44,7 @@ find . -type f -print0 | xargs -0 sed -i 's/administrator-guide.ent/..\/administ
 sed -i 's/..\/administrator-guide.ent/administrator-guide.ent/g' zh-CN/administrator-guide.xml
 find . -type f -print0 | xargs -0 sed -i 's/<section id="/<section xmlns="http:\/\/docbook.org\/ns\/docbook" xml:id="/g'
 
-cp -r ../../images/ ./zh-CN
+cp -r ../images/ ./zh-CN
 
 cd zh-CN
 cp $BASEDIR/pom.xml ./
